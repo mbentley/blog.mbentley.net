@@ -1,0 +1,21 @@
+url: http://blog.mbentley.net
+#baseURL: http://blog.mbentley.net/
+baseURL: http://localdev/
+name: blog.mbentley.net
+description: 'it&#039;s not clutter, just organized chaos'
+title: it's not clutter, just organized chaos
+languageCode: en
+author: mbentley
+theme: hugo-zen
+params:
+  logo: "https://www.gravatar.com/avatar/d95b7f316a888b336ea32710b98869a1"
+  copyright: "mbentley All rights reserved."
+  twitter: "https://twitter.com/matthewbentley"
+  facebook: "https://www.facebook.com/matthew.b.bentley"
+  github: "https://github.com/mbentley/"
+  email: "mbentley@mbentley.net"
+  analytics: ""
+blackfriday:
+  smartypants: false
+  smartDashes: false
+  latexDashes: false
