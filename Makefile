@@ -8,3 +8,5 @@ clean:
 
 server:
 	@hugo server --bind 0.0.0.0 || true
+
+.PHONY: all build clean server
