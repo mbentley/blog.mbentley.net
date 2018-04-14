@@ -1,7 +1,7 @@
 all: build
 
 build: clean
-	@docker run -it --rm -u "$(shell id -u):$(shell id -g)" -v $(shell pwd):/data mbentley/hugo -v
+	@hugo -v
 
 clean:
 	@rm -rfv public/*
@@ -13,6 +13,6 @@ run:
 	@docker run -it --rm -p 80:80 mbentley/blog.mbentley.net:latest
 
 server:
-	@docker run -it --rm -u "$(shell id -u):$(shell id -g)" -p 1313:1313 -v $(shell pwd):/data mbentley/hugo server --bind 0.0.0.0 || true
+	@hugo server || true
 
 .PHONY: all build clean image run server
