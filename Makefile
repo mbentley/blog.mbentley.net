@@ -1,18 +1,18 @@
 all: build
 
 build: clean
-	@hugo -v
+	hugo
 
 clean:
-	@rm -rfv public/*
-
-image: build
-	@docker build -t mbentley/blog.mbentley.net:latest .
-
-run:
-	@docker run -it --rm -p 80:80 mbentley/blog.mbentley.net:latest
+	rm -rfv public/*
 
 server:
-	@hugo server || true
+	hugo server || true
+
+image:
+	docker build -t mbentley/blog.mbentley.net:latest .
+
+run:
+	docker run -it --rm -p 80:80 mbentley/blog.mbentley.net:latest
 
 .PHONY: all build clean image run server
