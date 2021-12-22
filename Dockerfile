@@ -1,5 +1,5 @@
 # build
-FROM mbentley/hugo:latest as build
+FROM mbentley/hugo:latest AS build
 MAINTAINER Matt Bentley <mbentley@mbentley.net>
 
 COPY / /data/
