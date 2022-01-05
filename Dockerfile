@@ -1,6 +1,6 @@
 # build
 FROM mbentley/hugo:latest AS build
-MAINTAINER Matt Bentley <mbentley@mbentley.net>
+LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
 COPY / /data/
 
@@ -11,6 +11,6 @@ RUN hugo -v &&\
 
 # final image
 FROM mbentley/nginx:latest
-MAINTAINER Matt Bentley <mbentley@mbentley.net>
+LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
 COPY --from=build /data/public /var/www
