@@ -4,8 +4,6 @@ author: mbentley
 layout: post
 date: 2010-07-14
 url: /2010/07/installing-adobe-flash-64-bit-on-debian/
-shorturl:
-  - http://tinyurl.com/6dg8vv3
 categories:
   - computers
   - internet
@@ -22,65 +20,51 @@ tags:
   - x86_64
 
 ---
-somewhat recently, adobe has pulled all support for 64 bit flash player on linux. debian has also remove the support from it's non-free archives so the 'flashplugin-nonfree' package no longer works properly. i find that gnash and swfdec are pretty lacking and are not compatible with all websites which is a major problem for me. after searching online, i found a 64 bit copy of libflashplayer.so and wanted to install it the debian way using 'update-alternatives'. here are the steps to install it properly:
+somewhat recently, adobe has pulled all support for 64 bit flash player on linux. debian has also remove the support from it's non-free archives so the `flashplugin-nonfree` package no longer works properly. i find that gnash and swfdec are pretty lacking and are not compatible with all websites which is a major problem for me. after searching online, i found a 64 bit copy of libflashplayer.so and wanted to install it the debian way using `update-alternatives`. here are the steps to install it properly:
 
-  * first we want to remove the official 'flashplugin-nonfree' package:
-```
-sudo aptitude remove --purge flashplugin-nonfree
-```
+  1. first we want to remove the official `flashplugin-nonfree` package:
 
-  * download libflashplayer.so from [here][1].
-  * extract the file to a temporary location using:
-```
-tar zxvf libflashplayer-10.0.45.2.linux-x86_64.so_.tar.gz
-```
+    sudo aptitude remove --purge flashplugin-nonfree
 
-    you should now see 'libflashplayer.so'
+  2. download `libflashplayer.so` from [here][1].
+  3. extract the file to a temporary location using:
 
-  * from the same temporary location, execute the following commands to make a common location for the file to be stored and then to copy the file there:
-```
-sudo mkdir /usr/lib/adobe-flash
-sudo cp libflashplayer.so /usr/lib/adobe-flash/
-```
+    tar zxvf libflashplayer-10.0.45.2.linux-x86_64.so_.tar.gz
 
-  * next, you will need to create an update-alternatives entry using the following command (copy and paste **both** lines and insert it on the command line as a single command:
-```
-sudo update-alternatives --install /usr/lib/mozilla/plugins/flash-mozilla.so \
-flash-mozilla.so /usr/lib/adobe-flash/libflashplayer.so 20
-```
+you should now see `libflashplayer.so`
 
-    '-install' indicates that we are adding an entry, '/usr/lib/mozilla/plugins/flash-mozilla.so' indicates the symlink we want to add an option to, 'flash-mozilla.so' indicates the update-alternatives name, '/usr/lib/adobe-flash/libflashplayer.so' indicates the file which you are adding, '20' indicates the priority.
+  4. from the same temporary location, execute the following commands to make a common location for the file to be stored and then to copy the file there:
 
-  * now we just need to set the new flash player to be the default:
-```
-sudo update-alternatives --config flash-mozilla.so
-```
+    sudo mkdir /usr/lib/adobe-flash
+    sudo cp libflashplayer.so /usr/lib/adobe-flash/
 
-    make sure to choose the option for the newly created '/usr/lib/adobe-flash/libflashplayer.so':
+  5. next, you will need to create an update-alternatives entry using the following command (copy and paste **both** lines and insert it on the command line as a single command:
 
-```
-There are 2 alternatives which provide 'flash-mozilla.so'.
+    sudo update-alternatives --install /usr/lib/mozilla/plugins/flash-mozilla.so \
+    flash-mozilla.so /usr/lib/adobe-flash/libflashplayer.so 20
 
-  Selection    Alternative
------------------------------------------------
-          1    /usr/lib/gnash/libgnashplugin.so
-*+        2    /usr/lib/adobe-flash/libflashplayer.so
+`--install` indicates that we are adding an entry, `/usr/lib/mozilla/plugins/flash-mozilla.so` indicates the symlink we want to add an option to, `flash-mozilla.so` indicates the update-alternatives name, `/usr/lib/adobe-flash/libflashplayer.so` indicates the file which you are adding, `20` indicates the priority.
 
-Press enter to keep the default[*], or type selection number: 2
-Using '/usr/lib/adobe-flash/libflashplayer.so' to provide 'flash-mozilla.so'.
-```
+  6. now we just need to set the new flash player to be the default:
 
-  * now open up iceweasel (firefox) and navigate to '<http://kb2.adobe.com/cps/155/tn_15507.html>' and it should show the version of flash as 'LNX 10,0,45,2'.</ul> 
+    sudo update-alternatives --config flash-mozilla.so
 
-and that should be it! if you want to navigate to any flash based site or [adobe's flash test page][2] you should see the plugin working. this has currently been tested on debian lenny (stable) and debian squeeze (testing).
+make sure to choose the option for the newly created `/usr/lib/adobe-flash/libflashplayer.so`:
 
-<!-- Social Bookmarks BEGIN -->
+    There are 2 alternatives which provide `flash-mozilla.so`.
 
-<p class="postcats">
-Share this post:<br /><a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://del.icio.us/post?url=http://tinyurl.com/6dg8vv3&title=installing+adobe+flash+player+64+bit+on+debian" rel="nofollow" title="Share on Del.icio.us"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/delicious.png" title="Share on Del.icio.us" alt="Share on Del.icio.us" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.facebook.com/sharer.php?u=http://tinyurl.com/6dg8vv3" rel="nofollow" title="Share on Facebook"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/facebook.png" title="Share on Facebook" alt="Share on Facebook" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.linkedin.com/shareArticle?mini=true&url=http://tinyurl.com/6dg8vv3&title=installing+adobe+flash+player+64+bit+on+debian" rel="nofollow" title="Share on LinkedIn"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/linkedin.png" title="Share on LinkedIn" alt="Share on LinkedIn" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://reddit.com/submit?url=http://tinyurl.com/6dg8vv3&title=installing+adobe+flash+player+64+bit+on+debian" rel="nofollow" title="Share on reddit"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/reddit.png" title="Share on reddit" alt="Share on reddit" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.stumbleupon.com/submit?url=http://tinyurl.com/6dg8vv3&title=installing+adobe+flash+player+64+bit+on+debian" rel="nofollow" title="Share on Stumble Upon"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/stumbleupon.png" title="Share on Stumble Upon" alt="Share on Stumble Upon" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.technorati.com/faves?add=http://tinyurl.com/6dg8vv3" rel="nofollow" title="Share on Technorati"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/technorati.png" title="Share on Technorati" alt="Share on Technorati" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://twitter.com/home/?status=installing+adobe+flash+player+64+bit+on+debian+@+http://tinyurl.com/6dg8vv3" rel="nofollow" title="Share on Twitter"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/twitter.png" title="Share on Twitter" alt="Share on Twitter" /></a> <br />
-        </p>
+      Selection    Alternative
+    -----------------------------------------------
+              1    /usr/lib/gnash/libgnashplugin.so
+    *+        2    /usr/lib/adobe-flash/libflashplayer.so
 
-<!-- Social Bookmarks END -->
+    Press enter to keep the default[*], or type selection number: 2
+    Using '/usr/lib/adobe-flash/libflashplayer.so' to provide 'flash-mozilla.so'.
+
+  7. now open up iceweasel (firefox) and navigate to [http://kb2.adobe.com/cps/155/tn_15507.html][3] and it should show the version of flash as `LNX 10,0,45,2`.
+
+and that should be it! if you want to navigate to any flash based site or [adobe's flash test page][3] you should see the plugin working. this has currently been tested on debian lenny (stable) and debian squeeze (testing).
 
  [1]: /wp-content/uploads/2010/07/libflashplayer-10.0.45.2.linux-x86_64.so_.tar.gz
- [2]: http://www.adobe.com/software/flash/about/
+ [2]: http://kb2.adobe.com/cps/155/tn_15507.html
+ [3]: http://www.adobe.com/software/flash/about/

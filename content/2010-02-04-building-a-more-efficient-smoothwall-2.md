@@ -4,12 +4,6 @@ author: mbentley
 layout: post
 date: 2010-02-04
 url: /2010/02/building-a-more-efficient-smoothwall-2/
-aktt_notify_twitter:
-  - yes
-aktt_tweeted:
-  - 1
-shorturl:
-  - http://tinyurl.com/4r5678j
 categories:
   - computers
   - new gadgets
@@ -30,19 +24,11 @@ tags:
 ---
 i've decided to look more into power efficiency of my computers at home. while my power bill isn't horrible, it could most definitely be lower. there are only a few computers that i leave running 24/7. one of them is my [smoothwall][1]. while i built that computer with power efficiency in mind, i didn't take things to the extreme that i could have. now i want to build a solution that is closer in power consumption to your typical home router appliance. after doing some research, i found a solution that would not only be power efficient but also cost effective. the solution is the [soekris engineering net4801][2].
 
-<a href="/wp-content/uploads/2010/02/net4801_60_BO_front_big.jpg" class="smoothbox" rel="lightbox[34]"><img class="alignright" title="net4801" src="/wp-content/uploads/2010/02/net4801_60_BO_front_bt.jpg" alt="soekris engineering net4801" width="200" height="133" /></a>
+![soekris engineering net4801](/wp-content/uploads/2010/02/net4801_60_BO_front_big.jpg)
 
 this is basically a 586 class pc that runs headless and uses a serial console for access. i thought about buying one directly from the manufacturer but then i saw the prices and they seemed more expensive (new units start at $213.00) than i wanted for such a small project. luckily i was able to find a used unit that i bought on ebay for $96. not only did this cost less than half of the price of a new unit, but it was a \*-60 model instead of the \*-40 they are selling now (266 mhz proc vs 233 mhz, 256mb of ram vs 128mb).
 
 along with the unit itself, i purchased a 2.5" hdd mounting kit since i didn't want to go with a compactflash solution and i already have an extra 2.5" ide hdd. hopefully i should receive everything sometime next week. i haven't used any devices that use a serial console since i worked with cisco appliances in college but i ran a trial run of how i would install everything in vmware and it seemed to go easy enough. i'll do a more detailed breakdown of how to install an os on a unit that is headless and has no optical drive for installation once i have everything on hand.
-
-<!-- Social Bookmarks BEGIN -->
-
-<p class="postcats">
-  Share this post:<br /><a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://del.icio.us/post?url=http://tinyurl.com/4r5678j&title=building+a+more+efficient+smoothwall" rel="nofollow" title="Share on Del.icio.us"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/delicious.png" title="Share on Del.icio.us" alt="Share on Del.icio.us" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.facebook.com/sharer.php?u=http://tinyurl.com/4r5678j" rel="nofollow" title="Share on Facebook"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/facebook.png" title="Share on Facebook" alt="Share on Facebook" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.linkedin.com/shareArticle?mini=true&url=http://tinyurl.com/4r5678j&title=building+a+more+efficient+smoothwall" rel="nofollow" title="Share on LinkedIn"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/linkedin.png" title="Share on LinkedIn" alt="Share on LinkedIn" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://reddit.com/submit?url=http://tinyurl.com/4r5678j&title=building+a+more+efficient+smoothwall" rel="nofollow" title="Share on reddit"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/reddit.png" title="Share on reddit" alt="Share on reddit" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.stumbleupon.com/submit?url=http://tinyurl.com/4r5678j&title=building+a+more+efficient+smoothwall" rel="nofollow" title="Share on Stumble Upon"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/stumbleupon.png" title="Share on Stumble Upon" alt="Share on Stumble Upon" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.technorati.com/faves?add=http://tinyurl.com/4r5678j" rel="nofollow" title="Share on Technorati"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/technorati.png" title="Share on Technorati" alt="Share on Technorati" /></a> <a onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://twitter.com/home/?status=building+a+more+efficient+smoothwall+@+http://tinyurl.com/4r5678j" rel="nofollow" title="Share on Twitter"><img class="social_img" src="/wp-content/plugins/social-bookmarks/images/twitter.png" title="Share on Twitter" alt="Share on Twitter" /></a> <br />
-</p>
-
-<!-- Social Bookmarks END -->
 
  [1]: http://www.smoothwall.org
  [2]: http://www.soekris.com/net4801.htm
