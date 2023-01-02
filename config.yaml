@@ -1,5 +1,5 @@
-url: http://blog.mbentley.net
-baseURL: http://blog.mbentley.net/
+url: https://blog.mbentley.net
+baseURL: https://blog.mbentley.net/
 #baseURL: http://localdev/
 name: blog.mbentley.net
 description: it's not clutter, just organized chaos
@@ -9,10 +9,12 @@ author: mbentley
 theme: hugo-zen
 params:
   logo: "https://www.gravatar.com/avatar/d95b7f316a888b336ea32710b98869a1"
-  copyright: "mbentley All rights reserved."
-  twitter: "https://twitter.com/matthewbentley"
-  facebook: "https://www.facebook.com/matthew.b.bentley"
+  copyright: "mbentley.net"
   github: "https://github.com/mbentley/"
+  linkedin: "https://www.linkedin.com/in/matthewbbentley"
+  facebook: "https://www.facebook.com/matthew.b.bentley"
+  twitter: "https://twitter.com/matthewbentley"
+  mastodon: "https://hachyderm.io/@mbentley"
   email: "mbentley@mbentley.net"
   analytics: ""
 blackfriday:
