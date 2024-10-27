@@ -10,6 +10,13 @@ categories:
   - internet
   - linux
   - technology
+tags:
+  - redis
+  - valkey
+  - migration
+  - cli
+  - docker
+  - oss
 
 ---
 There are [many][1] [blog][2] [posts][3] about your migration options from Redis to Valkey but if you're wanting to do an in place swap, one thing that has come up is that Redis 7.4's RDB format isn't compatible with Redis so if you've upgraded Redis to 7.4, this complicates things a bit. I found myself in this exact situation which is described in this [GitHub issue][4] because I have been using the `redis:7-alpine` Docker image and auto-updating it when new versions are available. As user `bigb4ng` [points out][5], there is a cli based tool, [`rdb-cli`][8] which can read data from a dump file and output it to a Valkey server to achieve your data migration. While not quite the swap that you might have been hoping for, it's a nice workaround.
@@ -23,21 +30,19 @@ Let's do a quick walkthrough of what migration looks like using some basic Redis
    **Note**: Here, we are just using a Docker named volume `redis-data` for temporary data use. Adapt this method to your use case when performing your actual migration.
 
    ```bash
-   $ docker run -d \
+   docker run -d \
      --name redis \
      -v redis-data:/data \
      redis:7-alpine
-   91a7e3d1d823f0bf7a9451c0118e380c0b4c731bac9ef09482625301a2774c67
    ```
 
 1. Write a few key/value pairs to have some data for validation:
 
    ```bash
-   $ docker exec -it redis redis-cli SET foo bar
-   OK
-   $ docker exec -it redis redis-cli SET baz qux
-   OK
+   docker exec -it redis redis-cli SET foo bar
+   docker exec -it redis redis-cli SET baz qux
    ```
+   Each command will output `OK` if successful.
 
 1. Make sure to force Redis to save the data to the dump file:
 
@@ -58,38 +63,42 @@ Let's do a quick walkthrough of what migration looks like using some basic Redis
 1. Stop the `redis` docker container:
 
    ```bash
-   $ docker stop -t 30 redis
-   redis
+   docker stop -t 30 redis
    ```
 
 1. Start a Valkey docker container:
 
    ```bash
-   $ docker run -d \
+   docker run -d \
      --name valkey \
      -v valkey-data:/data \
      valkey/valkey:8-alpine
-   5107f008b16d0ee5075efc047e62c30dc03f66571f2db11fd4b3d1aa67a9fdaf
    ```
 
 1. Verify that there is no data in our Valkey container's database:
 
    ```bash
-   $ docker exec -it valkey valkey-cli KEYS '*'
-   (empty array)
+   docker exec -it valkey valkey-cli KEYS '*'
    ```
+
+   This should return `(empty array)`.
 
 1. Using the persistent data volume from the `redis` container, run the `rdb-cli` command:
 
    **Note**: we are re-using the container network from the valkey container so that it's available as localhost; this simplifies our experiment.
 
-   ```
-   $ docker run -it --rm \
+   ```bash
+   docker run -it --rm \
      --network=container:valkey \
      -v redis-data:/data \
      -w /data \
      mbentley/rdb-cli \
        rdb-cli /data/dump.rdb -l /dev/stdout redis -h 127.0.0.1 -p 6379
+   ```
+
+   This will output something similar to this, indicating that it can parse the RDB file:
+
+   ```
    INFO  : RDBX_createReaderFile: Initialized with file /data/dump.rdb
    INFO  : Finalizing parser configuration
    INFO  : Number sets of handlers registered at level RAW/STRUCT/DATA: 1/0/1
@@ -103,31 +112,38 @@ Let's do a quick walkthrough of what migration looks like using some basic Redis
 1. Verify that the data has been transferred to our Valkey container's database:
 
    ```bash
-   $ docker exec -it valkey valkey-cli KEYS '*'
+   docker exec -it valkey valkey-cli KEYS '*'
+   ```
+
+   You should see a response of the two keys that should have been migrated from redis:
+
+   ```
    1) "foo"
    2) "baz"
    ```
 
-1. Cleanup from our experiement:
+1. Now that you're done, you can cleanup from our test migration.
+
+   Remove the containers:
 
    ```bash
-   # remove the containers
-   $ docker rm -f redis valkey
-   redis
-   valkey
-
-   # remove the volumes
-   $ docker volume rm redis-data valkey-data
-   redis-data
-   valkey-data
-
-   # remove the images
-   docker rmi redis:7-alpine valkey/valkey:8-alpine
-   Untagged: redis:7-alpine
-   Deleted: sha256:de13e74e14b98eb96bdf886791ae47686c3c5d29f9d5f85ea55206843e3fce26
-   Untagged: valkey/valkey:8-alpine
-   Deleted: sha256:75010b6854cb5ba6a0b1540d1bd3238541a31e3f8018cd31f9e5b92bb3192fa6
+   docker rm -f redis valkey
    ```
+
+   Remove the volumes:
+
+   ```
+   docker volume rm redis-data valkey-data
+   ```
+
+   Remove the images:
+
+   ```
+   docker rmi redis:7-alpine valkey/valkey:8-alpine
+   ```
+
+You might want to perform some more detailed testing but for my use, this method has worked for me to migrate a number of Redis instances.
+
 
 [1]: https://www.percona.com/blog/valkey-redis-migrating-to-valkey/
 [2]: https://fedoramagazine.org/how-to-move-from-redis-to-valkey/
