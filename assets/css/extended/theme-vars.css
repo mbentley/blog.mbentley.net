@@ -1,3 +1,6 @@
 :root {
-    --main-width: 850px;
+  --main-width: 850px;
+}
+p a {
+  --primary: rgb(220,20,60);
 }
