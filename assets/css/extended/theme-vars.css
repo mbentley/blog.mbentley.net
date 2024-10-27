@@ -2,5 +2,10 @@
   --main-width: 850px;
 }
 p a {
-  --primary: rgb(220,20,60);
+  --primary: rgb(255,69,0);
+}
+
+.post-content code {
+  color: rgb(255,69,0);
+
 }
