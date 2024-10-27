@@ -4,7 +4,7 @@ LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
 COPY / /data/
 
-RUN hugo -v &&\
+RUN hugo --logLevel info &&\
   chown -R 33:33 /data/public &&\
   find . -type f -exec chmod 644 {} \; &&\
   find . -type d -exec chmod 755 {} \;
