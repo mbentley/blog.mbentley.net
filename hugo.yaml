@@ -1,22 +1,58 @@
-url: https://blog.mbentley.net
 baseURL: https://blog.mbentley.net/
-name: blog.mbentley.net
-description: it's not clutter, just organized chaos
 title: it's not clutter, just organized chaos
-languageCode: en
+languageCode: en-us
 author: mbentley
-theme: hugo-zen
+theme: PaperMod
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+mainsections: ["posts"]
+
 params:
-  logo: https://www.gravatar.com/avatar/d95b7f316a888b336ea32710b98869a1
-  copyright: mbentley.net
-  github: https://github.com/mbentley/
-  linkedin: https://www.linkedin.com/in/matthewbbentley
-  facebook: https://www.facebook.com/matthew.b.bentley
-  twitter: https://twitter.com/matthewbentley
-  mastodon: https://hachyderm.io/@mbentley
-  email: mbentley@mbentley.net
-  analytics: ""
-blackfriday:
-  smartypants: false
-  smartDashes: false
-  latexDashes: false
+  env: production
+  author: mbentley
+  description: "it's not clutter, just organized chaos"
+  ShowReadingTime: true
+  ShowCodeCopyButtons: true
+  ShowBreadCrumbs: false #true
+  ShowPageNums: true
+  ShowAllPagesInArchive: true
+  ShowShareButtons: true
+  fuseOpts: # https://www.fusejs.io/api/options.html
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 100
+    threshold: 0.1
+    minMatchCharLength: 2
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: Archive
+          url: archives
+          weight: 5
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Tags
+          url: tags/
+          weight: 10
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
