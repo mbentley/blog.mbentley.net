@@ -14,3 +14,4 @@ FROM mbentley/nginx:latest
 LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
 COPY --from=build /data/public /var/www
+COPY nginx/default /etc/nginx/sites-available/default
