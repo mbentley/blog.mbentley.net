@@ -1,13 +1,13 @@
 all: build
 
 build: clean
-	hugo
+	hugo --logLevel info
 
 clean:
 	rm -rfv public/*
 
 server:
-	hugo server || true
+	hugo server --logLevel info || true
 
 image:
 	docker build --pull --progress plain -t mbentley/blog.mbentley.net:latest .
