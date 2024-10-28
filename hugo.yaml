@@ -17,12 +17,14 @@ params:
   env: production
   author: mbentley
   description: "it's not clutter, just organized chaos"
+  #disableSpecial1stPost: true
   ShowReadingTime: true
   ShowCodeCopyButtons: true
   ShowBreadCrumbs: false #true
   ShowPageNums: true
   ShowAllPagesInArchive: true
   ShowShareButtons: true
+  ShareButtons: ["linkedin", "mastodon", "x", "reddit", "facebook", "ycombinator" ]
   fuseOpts: # https://www.fusejs.io/api/options.html
     isCaseSensitive: false
     shouldSort: true
