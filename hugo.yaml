@@ -17,6 +17,7 @@ params:
   env: production
   author: mbentley
   description: "it's not clutter, just organized chaos"
+  comments: true
   #disableSpecial1stPost: true
   ShowReadingTime: true
   ShowCodeCopyButtons: true
