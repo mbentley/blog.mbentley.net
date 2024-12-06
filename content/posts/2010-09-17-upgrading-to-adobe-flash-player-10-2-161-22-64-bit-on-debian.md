@@ -32,7 +32,7 @@ as i mentioned in my previous blog article, adobe temporarily pulled 64 bit supp
     sudo aptitude remove --purge flashplugin-nonfree
 
 
-  2. download the latest 64 bit plugin from <a href="http://labs.adobe.com/downloads/flashplayer10.html" target="_blank">here</a>, make sure to select **Download plug-in for 64-bit Linux** ([backup mirror][3]). i would suggest saving the file to **/tmp**.
+  2. download the latest 64 bit plugin from [http://labs.adobe.com/downloads/flashplayer10.html][1], make sure to select **Download plug-in for 64-bit Linux** ([backup mirror][3]). i would suggest saving the file to **/tmp**.
 
   3. open a command line window and navigate to /tmp:
 
